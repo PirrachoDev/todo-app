@@ -37,4 +37,7 @@
     font-family: "Quicksand", sans-serif;
     height: 3rem;
   }
-  
+  .SaveAndShow button{
+    margin-top: 0.5em;
+    font-size: large;
+  }

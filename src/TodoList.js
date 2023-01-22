@@ -14,6 +14,9 @@ class TodoList extends Component {
         this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
         this.handleUpdateTodo = this.handleUpdateTodo.bind(this);
         this.handleCompletion = this.handleCompletion.bind(this);
+
+        this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
+        this.getLocalStorage = this.getLocalStorage.bind(this);
     }
 
     handleAddTodo(todo) {
@@ -26,11 +29,15 @@ class TodoList extends Component {
     }
 
     saveToLocalStorage(){
-        localStorage.setItem('todos', this.state.todos);
+        localStorage.setItem('todos', JSON.stringify(this.state.todos));
+        console.log('SAVED');
     }
     getLocalStorage(){
         let todos = localStorage.getItem('todos');
-        return todos;
+        console.log(todos);
+        this.setState({
+            todos: JSON.parse(todos)
+        })
     }
 
     handleUpdateTodo(id, updatedTodoText) {
@@ -71,7 +78,11 @@ class TodoList extends Component {
         return (
             <div className='TodoList'>
                 <h1>ToDo List <span>A Simple React ToDo list App</span></h1>
-                <NewTodoForm addTodo={this.handleAddTodo} />
+                <NewTodoForm 
+                    addTodo={this.handleAddTodo} 
+                    save={this.saveToLocalStorage}
+                    show={this.getLocalStorage}
+                />
                 <div>
                     <ul>
                         {this.state.todos.map(

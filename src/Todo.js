@@ -75,8 +75,8 @@ class Todo extends Component {
                         {this.props.todoText}
                     </li>
                     <div className='Todo-buttons'>
-                        <button onClick={this.handleEdit}><i class="bi bi-pencil-fill"></i></button>
-                        <button onClick={this.handleRemove}><i class="bi bi-trash3-fill"></i></button>
+                        <button onClick={this.handleEdit}><i className="bi bi-pencil-fill"></i></button>
+                        <button onClick={this.handleRemove}><i className="bi bi-trash3-fill"></i></button>
                     </div>
                 </div>
         }
