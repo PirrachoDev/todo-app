@@ -29,8 +29,15 @@ class TodoList extends Component {
     }
 
     saveToLocalStorage(){
-        localStorage.setItem('todos', JSON.stringify(this.state.todos));
-        console.log('SAVED');
+        let todos = localStorage.getItem('todos');
+        if (todos){
+            if(window.confirm("This will override your previous saved list. Are you sure you want to continue?")){
+                return localStorage.setItem('todos', JSON.stringify(this.state.todos));
+            }
+        } else {
+            localStorage.setItem('todos', JSON.stringify(this.state.todos));
+        }
+        
     }
     getLocalStorage(){
         let todos = localStorage.getItem('todos');
@@ -82,7 +89,7 @@ class TodoList extends Component {
                 <NewTodoForm 
                     addTodo={this.handleAddTodo} 
                     save={this.saveToLocalStorage}
-                    show={this.getLocalStorage}
+                    restore={this.getLocalStorage}
                 />
                 <div>
                     <ul>

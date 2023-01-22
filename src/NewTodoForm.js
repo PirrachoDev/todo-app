@@ -10,7 +10,7 @@ class NewTodoForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSave = this.handleSave.bind(this);
-        this.handleShow = this.handleShow.bind(this);
+        this.handleRestore = this.handleRestore.bind(this);
     }
     handleChange(e) {
         this.setState({
@@ -29,8 +29,8 @@ class NewTodoForm extends Component {
     handleSave(){
         this.props.save()
     }
-    handleShow(){
-        this.props.show()
+    handleRestore(){
+        this.props.restore()
     }
 
     render() {
@@ -41,8 +41,8 @@ class NewTodoForm extends Component {
                     <input type='text' value={this.state.todoText} onChange={this.handleChange} id="todoText" name='todoText' placeholder='New ToDo...' />
                     <button onClick={this.handleSubmit}>Add Todo</button>
                     <div className='SaveAndShow'>
-                        <button onClick={this.handleSave}><i className="bi bi-cloud-upload-fill"></i></button>
-                        <button onClick={this.handleShow}><i className="bi bi-cloud-download-fill"></i></button>
+                        <button onClick={this.handleSave}><i className="bi bi-cloud-upload-fill"></i> Save</button>
+                        <button onClick={this.handleRestore}><i className="bi bi-cloud-download-fill"></i> restore list</button>
                     </div>
                 </form>
             </div>
