@@ -25,6 +25,14 @@ class TodoList extends Component {
         )
     }
 
+    saveToLocalStorage(){
+        localStorage.setItem('todos', this.state.todos);
+    }
+    getLocalStorage(){
+        let todos = localStorage.getItem('todos');
+        return todos;
+    }
+
     handleUpdateTodo(id, updatedTodoText) {
         const updatedTodos = this.state.todos.map(todo => {
             if (todo.id === id) {

@@ -17,10 +17,12 @@ class NewTodoForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addTodo(this.state);
-        this.setState({
-            todoText: ''
-        });
+        if(this.state.todoText !== '') {
+            this.props.addTodo(this.state);
+            this.setState({
+                todoText: ''
+            });
+        }
     }
 
     render() {
@@ -30,6 +32,7 @@ class NewTodoForm extends Component {
                     <label htmlFor='todoText'>New Todo: </label>
                     <input type='text' value={this.state.todoText} onChange={this.handleChange} id="todoText" name='todoText' placeholder='New ToDo...' />
                     <button onClick={this.handleSubmit}>Add Todo</button>
+                    <button onClick={this.handleSave}></button>
                 </form>
             </div>
         )
