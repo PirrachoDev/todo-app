@@ -34,10 +34,11 @@ class TodoList extends Component {
     }
     getLocalStorage(){
         let todos = localStorage.getItem('todos');
-        console.log(todos);
-        this.setState({
-            todos: JSON.parse(todos)
-        })
+        if (todos) {
+            this.setState({
+                todos: JSON.parse(todos)
+            })
+        }
     }
 
     handleUpdateTodo(id, updatedTodoText) {
