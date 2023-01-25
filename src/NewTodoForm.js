@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import { Tooltip } from 'react-bootstrap';
 import './NewTodoForm.css'
 
 class NewTodoForm extends Component {
@@ -19,17 +21,17 @@ class NewTodoForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.todoText !== '') {
+        if (this.state.todoText !== '') {
             this.props.addTodo(this.state);
             this.setState({
                 todoText: ''
             });
         }
     }
-    handleSave(){
+    handleSave() {
         this.props.save()
     }
-    handleRestore(){
+    handleRestore() {
         this.props.restore()
     }
 
@@ -41,8 +43,35 @@ class NewTodoForm extends Component {
                     <input type='text' value={this.state.todoText} onChange={this.handleChange} id="todoText" name='todoText' placeholder='New ToDo...' />
                     <button onClick={this.handleSubmit}>Add Todo</button>
                     <div className='SaveAndShow'>
-                        <button onClick={this.handleSave}><i className="bi bi-cloud-upload-fill"></i> Save</button>
-                        <button onClick={this.handleRestore}><i className="bi bi-cloud-download-fill"></i> restore list</button>
+                        <button onClick={this.handleSave}><i className="bi bi-cloud-upload-fill"></i> Save&nbsp;
+                            <OverlayTrigger
+                                key={'top'}
+                                placement={'top'}
+                                overlay={
+                                    <Tooltip id={`tooltip-top`}>
+                                        Clicking this button will upload your current ToDo list and you can restore it later.
+                                    </Tooltip>
+                                }>
+                                <sup>
+                                    <i className="bi bi-info-circle"></i>
+                                </sup>
+                            </OverlayTrigger>
+                        </button>
+
+                        <button onClick={this.handleRestore}><i className="bi bi-cloud-download-fill"></i> restore list&nbsp;
+                            <OverlayTrigger
+                                key={'top'}
+                                placement={'top'}
+                                overlay={
+                                    <Tooltip id={`tooltip-top`}>
+                                        Clicking this button will show your previously saved ToDo list.
+                                    </Tooltip>
+                                }>
+                                <sup>
+                                    <i className="bi bi-info-circle"></i>
+                                </sup>
+                            </OverlayTrigger>
+                        </button>
                     </div>
                 </form>
             </div>
